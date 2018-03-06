@@ -1,0 +1,33 @@
+<!-- START HEADER -->
+<header id="header" class="page-topbar">
+  <!-- start header nav-->
+  <div class="navbar-fixed">
+    <nav class="navbar-color gradient-45deg-purple-deep-orange gradient-shadow">
+      <div class="nav-wrapper">
+        <ul class="right">
+          <li>
+            <a class="waves-effect waves-block waves-light profile-button" data-activates="profile-dropdown">
+              <span class="hide-on-small-and-down" style="padding: 8px">{{data?.user?.firstName? data.user.firstName: 'Rattasat'}}</span>
+              <span class="avatar-status avatar-online">
+                <img src="../../assets/image/account_boy.png" alt="avatar">
+                <i></i>
+              </span>
+            </a>
+            <ul id="profile-dropdown" class="dropdown-content" style="white-space: nowrap; opacity: 1; left: 1310.04px; position: absolute; top: 64px; display: none;">
+              <li>
+                <a routerLink="/user" class="grey-text text-darken-1">
+                  <i class="material-icons">face</i> Profile</a>
+              </li>
+              <li>
+                <a routerLink="/login" class="grey-text text-darken-1">
+                  <i class="material-icons">keyboard_tab</i> Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <!-- end header nav-->
+</header>
+<!-- END HEADER -->

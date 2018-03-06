@@ -1,0 +1,11 @@
+ul.side-nav.leftside-navigation li:not(.no-padding).active {
+  background-color: #ab47bc;
+}
+
+ul.side-nav.leftside-navigation li:not(.no-padding).active a {
+  color: #fff;
+}
+
+ul.side-nav.leftside-navigation li:not(.no-padding).active i {
+    color: #fff;
+}

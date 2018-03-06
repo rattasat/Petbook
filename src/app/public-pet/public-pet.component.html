@@ -1,0 +1,46 @@
+<div class="page cyan">
+  <div class="row" style="display: table-cell; vertical-align: middle;">
+    <div class="col s12 m6 l6 offset-m3 offset-l3">
+      <div id="profile-card" class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="../../assets/image/profile_cover1.png" alt="user bg">
+        </div>
+        <div class="card-content">
+          <img src="../../assets/image/account_boy.png" alt="account" class="circle responsive-img activator card-profile-image cyan lighten-1 padding-2">
+          <img src="../../assets/image/bob.png" alt="pet" class="materialboxed responsive-img" width="380">
+          <!-- <img src="../../assets/image/petbook_logo.png" alt="pet" class="materialboxed responsive-img" width="380"> -->
+          <!-- <img src="../../assets/image/teer.png" alt="pet" class="materialboxed responsive-img" width="380"> -->
+          <div class="col s12">
+            <h5 class="grey-text text-darken-4">Pet Owner</h5>
+            <p>
+              <i class="material-icons">perm_identity</i> {{user?.name? user.name : 'Firstname Lastname'}}</p>
+            <p>
+              <i class="material-icons">perm_phone_msg</i> {{user?.tel? user.tel != null? user.tel : '-' : '061-772-0021'}}</p>
+            <p>
+              <i class="material-icons">email</i> {{user?.email? user.email != null? user.email : '-' : 'rattasat_k@cmu.ac.th'}}</p>
+          </div>
+          <div class="col s12">
+            <h5 class="grey-text text-darken-4">Pet</h5>
+            <p>
+              Type: {{pet?.type? pet.type != null? pet.type : '-' : 'Dog'}}</p>
+            <p>
+              Name: {{pet?.name? pet.name != null? pet.name : '-' : 'Bob'}}</p>
+            <p>
+              Gender: {{pet?.gender? pet.gender != null? pet.gender : '-' : 'Male'}}</p>
+            <p>
+              Age: {{pet?.age? pet.age != null? pet.age : '-' : '0 year 3 month'}}</p>
+            <p>
+              Remark: {{pet?.remark? pet.remark != null? pet.remark : '-' : '-'}}</p>
+            <p>
+              Status: {{pet?.lostStatus? pet.lostStatus != null? pet.lostStatus : '-' : 'not lost'}}</p>
+          </div>
+          <div class="center">
+            <button class="waves-effect waves-light purple btn">
+              <i class="material-icons right">location_on</i> Report Location
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
