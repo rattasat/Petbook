@@ -5,6 +5,8 @@ import { HomeComponent } from './home/home.component';
 import { HomeModule } from './home/home.module';
 import { RegisterComponent } from './register/register.component';
 import { PublicPetComponent } from './public-pet/public-pet.component';
+import { ErrorModule } from './error/error.module';
+import { ErrorComponent } from './error/error.component';
 
 export const routes: Routes = [
   {
@@ -22,5 +24,9 @@ export const routes: Routes = [
   {
     path: '',
     loadChildren: './home/home.module#HomeModule'
+  },
+  {
+    path: 'error',
+    loadChildren: './error/error.module#ErrorModule'
   }
 ];

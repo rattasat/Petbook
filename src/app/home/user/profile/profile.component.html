@@ -1,0 +1,54 @@
+<!--breadcrumbs start-->
+<div id="breadcrumbs-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <h5 class="breadcrumbs-title">User</h5>
+        <ol class="breadcrumbs">
+          <li class="active">
+            User
+          </li>
+          <li class="active">
+            Profile
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<!--breadcrumbs end-->
+<!--start container-->
+<div class="container row">
+  <div class="col s12 m6 l6 offset-m3 offset-l3 no-padding">
+    <div id="profile-card" class="card">
+      <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="../../assets/image/profile_cover1.png" alt="user bg">
+      </div>
+      <div class="card-content">
+        <img src="../../assets/image/account_boy.png" alt="account" class="circle responsive-img activator card-profile-image cyan lighten-1 padding-2">
+        <a class="btn-floating activator btn-move-up waves-effect waves-light blue darken-4 z-depth-4 right">
+          <i class="material-icons">edit</i>
+        </a>
+        <h5 class="grey-text text-darken-4">Profile</h5>
+        <p>
+          <i class="material-icons">perm_identity</i> Name: {{user.firstName}} {{user.lastName}}</p>
+        <p>
+          <i class="material-icons">perm_phone_msg</i> Tel: {{user.tel ? user.tel : '-'}}</p>
+        <p>
+          <i class="material-icons">email</i> Email: {{user.email ? user.email : '-'}}</p>
+        <p>
+          <i class="material-icons">security</i> Verify Code: {{user.verifyCode ? user.verifyCode : '-'}}</p>
+        <p>
+          <i class="material-icons">message</i> Line Status: {{user.lineStatus}}</p>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">
+          <i class="material-icons right">close</i>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end container-->
+
+<app-loading-page *ngIf="loading"></app-loading-page>

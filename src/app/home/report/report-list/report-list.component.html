@@ -1,0 +1,41 @@
+<!--breadcrumbs start-->
+<div id="breadcrumbs-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <h5 class="breadcrumbs-title">Reports</h5>
+        <ol class="breadcrumbs">
+          <li class="active">
+            <a href="/petlist">Pets</a>
+          </li>
+          <li class="active">
+            Reports
+          </li>
+          <li class="active">
+            <a href="/mypet/{{pet._id}}">{{pet.name}}</a>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<!--breadcrumbs end-->
+
+<section id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m4 l4" *ngFor="let report of reports">
+        <div class="card">
+          <div class="card-content">
+            <h4 class="header m-0">Report</h4>
+            <p class="no-margin grey-text lighten-3 medium-small">{{report.created | date:'EEEE, LLLL, yyyy HH:mm'}}</p>
+            <textarea style="resize: none; height: 10rem; margin-top: 10px;" readonly>{{report.message}}</textarea>
+          </div>
+        </div>
+      </div>
+      <h4 *ngIf="message === 'no reports'">NO REPORT</h4>
+    </div>
+  </div>
+</section>
+
+<app-loading-page *ngIf="loading"></app-loading-page>

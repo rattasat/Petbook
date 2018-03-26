@@ -1,0 +1,28 @@
+<div class="card center" *ngIf="message == 'no location'">
+  <h1>No location</h1>
+</div>
+
+<div *ngIf="message == 'ok'" class="card" style="padding-bottom: 1rem;">
+  <div class="col s12 m12 l12 no-padding">
+    <agm-map [latitude]="markers[0].latitude" [longitude]="markers[0].longitude" [scrollwheel]="true" [fitBounds]="latlngBounds"
+      [zoomControl]="false">
+      <agm-marker *ngFor="let m of markers" [latitude]="m.latitude" [longitude]="m.longitude"></agm-marker>
+    </agm-map>
+  </div>
+  <div class="input-field col s12 m4 l4 margin">
+    <p-calendar [(ngModel)]="dates" selectionMode="range" [maxDate]="maxDate" showButtonBar="true" readonlyInput="true" placeholder="Range Date"
+      panControl="true" minZoom="16"></p-calendar>
+  </div>
+  <div class="col s12 m4 l4 margin">
+    <div class="input-field">
+      <button (click)="getLocation()" class="col s12 m8 l8 light-blue waves-effect waves-light btn">
+        Get Location
+      </button>
+    </div>
+  </div>
+</div>
+
+<swal #notfondSwal title="NO LOCATION" type="info" [showCancelButton]="false">
+</swal>
+
+<app-loading-opacity *ngIf="finding"></app-loading-opacity>

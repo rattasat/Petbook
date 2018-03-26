@@ -7,19 +7,19 @@
         <ul class="right">
           <li>
             <a class="waves-effect waves-block waves-light profile-button" data-activates="profile-dropdown">
-              <span class="hide-on-small-and-down" style="padding: 8px">{{data?.user?.firstName? data.user.firstName: 'Rattasat'}}</span>
+              <span class="hide-on-small-and-down" style="padding: 8px">{{user.firstName ? user.firstName : '-'}}</span>
               <span class="avatar-status avatar-online">
                 <img src="../../assets/image/account_boy.png" alt="avatar">
                 <i></i>
               </span>
             </a>
-            <ul id="profile-dropdown" class="dropdown-content" style="white-space: nowrap; opacity: 1; left: 1310.04px; position: absolute; top: 64px; display: none;">
+            <ul id="profile-dropdown" class="dropdown-content">
               <li>
-                <a routerLink="/user" class="grey-text text-darken-1">
+                <a href="/profile" class="grey-text text-darken-1">
                   <i class="material-icons">face</i> Profile</a>
               </li>
               <li>
-                <a routerLink="/login" class="grey-text text-darken-1">
+                <a (click)="logoutSwal.show()" class="grey-text text-darken-1">
                   <i class="material-icons">keyboard_tab</i> Logout</a>
               </li>
             </ul>
@@ -30,4 +30,7 @@
   </div>
   <!-- end header nav-->
 </header>
+
+<swal #logoutSwal title="Logout" text="Are you sure?" type="question" [showCancelButton]="true" (confirm)="logout()">
+</swal>
 <!-- END HEADER -->

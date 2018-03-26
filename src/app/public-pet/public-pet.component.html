@@ -1,46 +1,49 @@
 <div class="page cyan">
-  <div class="row" style="display: table-cell; vertical-align: middle;">
-    <div class="col s12 m6 l6 offset-m3 offset-l3">
-      <div id="profile-card" class="card">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="../../assets/image/profile_cover1.png" alt="user bg">
+  <div id="petPage" class="row" style="display: table-cell; vertical-align: middle;">
+    <div class="col s12 m12 l6 offset-l3">
+      <div class="card" style="padding: 1rem; display: flow-root;">
+        <div class="col s12 m6 l6" style="margin-bottom: 1rem">
+          <div class="blue" style="position: relative;">
+            <img src='{{pet.image? pet.image : "../../assets/image/default_pet.png"}}' alt="pet" class="materialboxed responsive-img"
+              style="display: block; margin: 0 auto;">
+            <div class="ribbon" *ngIf="pet.lostStatus == true">
+              <span>LOST</span>
+            </div>
+          </div>
         </div>
-        <div class="card-content">
-          <img src="../../assets/image/account_boy.png" alt="account" class="circle responsive-img activator card-profile-image cyan lighten-1 padding-2">
-          <img src="../../assets/image/bob.png" alt="pet" class="materialboxed responsive-img" width="380">
-          <!-- <img src="../../assets/image/petbook_logo.png" alt="pet" class="materialboxed responsive-img" width="380"> -->
-          <!-- <img src="../../assets/image/teer.png" alt="pet" class="materialboxed responsive-img" width="380"> -->
-          <div class="col s12">
-            <h5 class="grey-text text-darken-4">Pet Owner</h5>
-            <p>
-              <i class="material-icons">perm_identity</i> {{user?.name? user.name : 'Firstname Lastname'}}</p>
-            <p>
-              <i class="material-icons">perm_phone_msg</i> {{user?.tel? user.tel != null? user.tel : '-' : '061-772-0021'}}</p>
-            <p>
-              <i class="material-icons">email</i> {{user?.email? user.email != null? user.email : '-' : 'rattasat_k@cmu.ac.th'}}</p>
-          </div>
-          <div class="col s12">
-            <h5 class="grey-text text-darken-4">Pet</h5>
-            <p>
-              Type: {{pet?.type? pet.type != null? pet.type : '-' : 'Dog'}}</p>
-            <p>
-              Name: {{pet?.name? pet.name != null? pet.name : '-' : 'Bob'}}</p>
-            <p>
-              Gender: {{pet?.gender? pet.gender != null? pet.gender : '-' : 'Male'}}</p>
-            <p>
-              Age: {{pet?.age? pet.age != null? pet.age : '-' : '0 year 3 month'}}</p>
-            <p>
-              Remark: {{pet?.remark? pet.remark != null? pet.remark : '-' : '-'}}</p>
-            <p>
-              Status: {{pet?.lostStatus? pet.lostStatus != null? pet.lostStatus : '-' : 'not lost'}}</p>
-          </div>
-          <div class="center">
-            <button class="waves-effect waves-light purple btn">
-              <i class="material-icons right">location_on</i> Report Location
-            </button>
-          </div>
+        <div class="col s12 m6 l6">
+          <p class="pet-content">Type : {{pet.type}}</p>
+          <p class="pet-content">Breed : {{pet.breed ? pet.breed : '-'}}</p>
+          <p class="pet-content">Name : {{pet.name}}</p>
+          <p class="pet-content">Gender : {{pet.gender ? pet.gender : '-'}}</p>
+          <p class="pet-content">Age : {{pet.ageYear ? pet.ageMonth ? pet.ageYear + ' years ' + pet.ageMonth + ' months' : pet.ageYear + ' years'
+            : pet.ageMonth ? pet.ageMonth + ' months' : '-'}}</p>
+          <p class="pet-content">Color : {{pet.color ? pet.color : '-'}}</p>
+          <div class="divider"></div>
+          <p class="pet-content" style="margin-top: 10px;">Owner : {{user.firstName}} {{user.lastName}}</p>
+          <p class="pet-content">Tel : {{user.tel ? user.tel : '-'}}</p>
+          <p class="pet-content">Email : {{user.email ? user.email : '-'}}</p>
+        </div>
+        <div class="col s12">
+          <button (click)="reportLocation()" class="input-field col s12 m8 l8 offset-m2 offset-l1 light-blue waves-effect waves-light btn">
+            Report Location
+            <i class="material-icons" style="line-height: initial;">location_on</i>
+          </button>
+          <a href="https://line.me/R/ti/p/%40pvb6787t" class="input-field right">
+            <img height="36" border="0" alt="เพิ่มเพื่อน" src="https://scdn.line-apps.com/n/line_add_friends/btn/en.png">
+          </a>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<swal #successSwal title="Successs" type="success" [showConfirmButton]="false">
+</swal>
+
+<swal #errorSwal title="Error" type="error" [showConfirmButton]="false" [timer]="timer">
+</swal>
+
+<app-loading-page *ngIf="loading"></app-loading-page>
+
+<app-loading-opacity *ngIf="reported"></app-loading-opacity>

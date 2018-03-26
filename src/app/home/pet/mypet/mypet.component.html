@@ -1,0 +1,94 @@
+<!--breadcrumbs start-->
+<div id="breadcrumbs-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <h5 class="breadcrumbs-title">Pets</h5>
+        <ol class="breadcrumbs">
+          <li class="active">
+            <a href="/petlist">Pets</a>
+          </li>
+          <li class="active">
+            {{pet.name}}
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<!--breadcrumbs end-->
+
+<div class="row margin">
+  <div class="col s12 m12 l4">
+    <div class="card" style="padding: 1rem; display: flow-root; position: relative;">
+      <div class="card-content margin no-padding">
+        <div class="col s12 m8 l12" style="padding: 0 0 .75rem 0">
+          <div class="blue" style="position: relative;">
+            <img src='{{pet.image? pet.image : "../../assets/image/default_pet.png"}}' alt="pet" class="materialboxed responsive-img"
+              style="display: block; margin: 0 auto;">
+            <div *ngIf="pet.lostStatus" class="ribbon" (click)="foundSwal.show()">
+              <span>LOST</span>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m4 l6 ">
+          <p class="pet-content">Type : {{pet.type}}</p>
+          <p class="pet-content">Breed : {{pet.breed ? pet.breed : '-'}}</p>
+          <p class="pet-content">Name : {{pet.name}}</p>
+          <p class="pet-content">Gender : {{pet.gender ? pet.gender : '-'}}</p>
+          <p class="pet-content">Age : {{pet.ageYear ? pet.ageMonth ? pet.ageYear + ' years ' + pet.ageMonth + ' months' : pet.ageYear + ' years'
+            : pet.ageMonth ? pet.ageMonth + ' months' : '-'}}</p>
+          <p class="pet-content">Color : {{pet.color ? pet.color : '-'}}</p>
+        </div>
+        <button (click)="deleteSwal.show()" style="position:absolute; bottom:1rem; right:1rem;" class="btn-floating waves-effect waves-light green darken-1">
+          <i class="material-icons">delete</i>
+        </button>
+        <button (click)="reportSwal.show()" style="position:absolute; bottom:1rem; right:5rem;" class="btn-floating waves-effect waves-light purple lightrn-1">
+          <i class="material-icons">report_problem</i>
+        </button>
+        <a href="reports/{{pet._id}}" style="position:absolute; bottom:1rem; right:9rem;" class="btn-floating waves-effect waves-light purple accent-4">
+          <i class="material-icons">event_note</i>
+        </a>
+        <button style="position:absolute; bottom:1rem; right:13rem;" class="btn-floating activator waves-effect waves-light cyan">
+          <i class="material-icons">mode_edit</i>
+        </button>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">
+          <i class="material-icons right">close</i>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m12 l8">
+    <app-petlocation></app-petlocation>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <qrcode name="qr" class="materialboxed" [qrdata]="url" [size]="180" [level]="'M'"></qrcode>
+  </div>
+</div>
+
+<swal #deleteSwal title="Delete {{pet.name}}?" type="question" [showCancelButton]="true" (confirm)="deletePet()">
+</swal>
+
+<swal #foundSwal title="Found {{pet.name}}?" type="question" [showCancelButton]="true" confirmButtonText="Yes" cancelButtonText="No"
+  (confirm)="updateStatus()">
+</swal>
+
+<!-- <swal #reportSwal title="Report {{pet.name}} Lost" text="please enter message" type="info" [showCancelButton]="true" confirmButtonText="Submit"
+  input="textarea" (confirm)="reportPet($event)">
+</swal> -->
+
+<swal #reportSwal title="Report {{pet.name}} Lost" text="please enter message" type="info" [showCancelButton]="true" confirmButtonText="Submit"
+  input="textarea" (confirm)="reportPet($event)">
+</swal>
+
+<swal #warning text="please input message." type="warning"></swal>
+
+
+
+<app-loading-page *ngIf="loading"></app-loading-page>
+
+<app-loading-opacity *ngIf="deleting"></app-loading-opacity>
