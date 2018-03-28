@@ -14,7 +14,7 @@ export class MypetComponent implements OnInit {
   param: any;
   pet: any = {};
   loading = true;
-  url = location.host + '/pet/';
+  url = location.host + '/pet/' + this.pet._id;
   deleting = false;
   @ViewChild('warning') private warning: SwalComponent;
 
@@ -25,6 +25,7 @@ export class MypetComponent implements OnInit {
     private petService: PetService
   ) {
     this.route.params.subscribe(params => this.param = params);
+    this.url = location.host + '/pet/' + this.param.petid;
   }
 
   ngOnInit() {
@@ -35,8 +36,6 @@ export class MypetComponent implements OnInit {
           this.loading = false;
           if (resp.status === 200) {
             this.pet = resp.body['pet'];
-            console.log(this.pet._id);
-            this.url = this.url + this.pet._id;
           }
         },
         err => {
