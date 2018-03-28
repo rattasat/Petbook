@@ -62,9 +62,11 @@ export class PetlocationComponent implements OnInit {
             if (err.error['message'] == 'not found pet') {
               this.router.navigate(['/petlist']);
             } else if (err.error['message'] == 'not found user') {
+              localStorage.clear();
               this.router.navigate(['/login']);
             }
           } else {
+            localStorage.clear();
             this.router.navigate(['/login']);
           }
         }

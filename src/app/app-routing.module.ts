@@ -7,7 +7,6 @@ import { RegisterComponent } from './register/register.component';
 import { PublicPetComponent } from './public-pet/public-pet.component';
 import { ErrorModule } from './error/error.module';
 import { ErrorComponent } from './error/error.component';
-
 export const routes: Routes = [
   {
     path: 'login',
@@ -20,6 +19,11 @@ export const routes: Routes = [
   {
     path: 'pet/:petid',
     component: PublicPetComponent
+  },
+  {
+    path: '**',
+    redirectTo: 'petlist',
+    pathMatch: 'full'
   },
   {
     path: '',

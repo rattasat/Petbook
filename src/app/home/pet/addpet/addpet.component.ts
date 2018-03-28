@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PetService } from '../../../service/pet.service';
 import { SelectItem } from 'primeng/api';
@@ -62,9 +62,25 @@ export class AddpetComponent implements OnInit {
 				}
 			},
 			err => {
+				localStorage.clear();
 				this.router.navigate(['/login']);
 			});
-		// console.log(this.pet);
 	}
+
+	chkNum(evt) {
+		var charCode = (evt.which) ? evt.which : evt.keyCode
+		if (charCode > 31 && (charCode < 48 || charCode > 57))
+			return false;
+
+		return true;
+	}
+
+	chkspace(evt) {
+		var charCode = (evt.which) ? evt.which : evt.keyCode
+		if (charCode == 32)
+			return false;
+		return true;
+	}
+
 
 }

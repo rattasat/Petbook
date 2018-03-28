@@ -20,26 +20,28 @@ export class PetlistComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (localStorage.length == 0) {
-      this.router.navigate(['/login']);
-    } else {
-      this.titleService.setTitle('Petbook');
-    this.petService.getPetList()
-      .subscribe(
-        resp => {
-          this.loading = false;
-          if (resp.status === 200) {
-            this.message = resp.body['message'];
-            if (this.message == 'ok') {
-              this.pets = resp.body['pets']
+    this.titleService.setTitle('Petbook');
+    if (!localStorage.getItem('username')) {
+      this.router.navigate(['/login'])
+    }
+    else {
+      this.petService.getPetList()
+        .subscribe(
+          resp => {
+            this.loading = false;
+            if (resp.status === 200) {
+              this.message = resp.body['message'];
+              if (this.message == 'ok') {
+                this.pets = resp.body['pets']
+              }
             }
+          },
+          err => {
+            this.loading = false;
+            localStorage.clear();
+            this.router.navigate(['/login']);
           }
-        },
-        err => {
-          this.loading = false;
-          this.router.navigate(['/login']);
-        }
-      )
+        )
     }
   }
 }

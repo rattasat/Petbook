@@ -1,31 +1,43 @@
 <div class="page cyan">
   <div style="display: table-cell; vertical-align: middle;">
-    <form (ngSubmit)="login()" id="loginForm" #loginForm="ngForm" class="row" style="margin: auto; padding: 10px">
+    <form #loginForm="ngForm" (ngSubmit)="loginForm.form.valid && login()" class="row" style="margin: auto; padding: 10px">
       <div class="card-panel col s12 m6 l4 offset-m4 offset-l4">
         <div class="row">
           <div class="input-field col s12 center">
-            <img src="./assets/image/petbook_logo.png" alt="" class="circle responsive-img valign profile-image-login">
+            <img src="./assets/image/petbook_logo.png" alt="logo" class="circle responsive-img valign profile-image-login">
             <p class="center login-form-text">Petbook Thai</p>
           </div>
         </div>
+        <p *ngIf="invalid" class="margin center" style="color: #FF4081;">invalid username or password</p>
         <div class="row margin">
           <div class="input-field col s12">
             <i class="material-icons prefix pt-5">person_outline</i>
-            <input [(ngModel)]="user.username" id="username" name="username" type="text" data-error=".errorTxt1">
+            <input [(ngModel)]="user.username" id="username" name="username" type="text" #username="ngModel" (keydown)="chkspace($event)"
+              required />
             <label for="username" class="center-align">Username</label>
-            <div class="errorTxt1"></div>
+            <div *ngIf="username.invalid && (username.dirty || loginForm.submitted)">
+              <div *ngIf="username.errors.required" class="error">
+                username is required.
+              </div>
+            </div>
           </div>
         </div>
         <div class="row margin">
           <div class="input-field col s12">
             <i class="material-icons prefix pt-5">lock_outline</i>
-            <input [(ngModel)]="user.password" name="password" type="password">
+            <input [(ngModel)]="user.password" name="password" type="password" #password="ngModel" (keydown)="chkspace($event)" required
+            />
             <label for="password">Password</label>
+            <div *ngIf="password.invalid && (password.dirty || loginForm.submitted)">
+              <div *ngIf="password.errors.required" class="error">
+                password is required.
+              </div>
+            </div>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <button type="submit" [disabled]="!loginForm.form.valid" class="btn waves-effect waves-light col s12"> Login</button>
+            <button type="submit" class="btn waves-effect waves-light col s12"> Login</button>
           </div>
           <div class="input-field col s12">
             <p class="margin medium-small" style="display: initial;">
@@ -40,3 +52,5 @@
     </form>
   </div>
 </div>
+
+<app-loading-opacity *ngIf="submitting"></app-loading-opacity>

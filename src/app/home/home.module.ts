@@ -13,11 +13,12 @@ import { MypetModule } from './pet/mypet/mypet.module';
 import { ProfileComponent } from './user/profile/profile.component';
 import { LoadingPageModule } from '../loading/loading-page/loading-page.module';
 import { HeaderModule } from '../header/header.module';
-import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, FormControl, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AddpetModule } from './pet/addpet/addpet.module';
 import { ReportListComponent } from './report/report-list/report-list.component';
 import { ReportListModule } from './report/report-list/report-list.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { ReportListModule } from './report/report-list/report-list.module';
     AddpetModule,
     LoadingPageModule,
     HeaderModule,
-    ReportListModule
+    ReportListModule,
+    RouterModule
   ],
   declarations: [HomeComponent,
     NavbarComponent,

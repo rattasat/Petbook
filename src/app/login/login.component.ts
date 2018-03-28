@@ -13,6 +13,8 @@ declare var $: any;
 export class LoginComponent implements OnInit {
 
   user: any = {};
+  submitting = false;
+  invalid = false;
 
   constructor(
     private titleService: Title,
@@ -21,35 +23,17 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (localStorage.getItem('username')) {
+      this.router.navigate(['/petlist']);
+    }
     this.titleService.setTitle('Petbook | Login')
-    // $('#loginForm').validate({
-    //   rules: {
-    //     username: {
-    //       required: true,
-    //       minlength: 5
-    //     }
-    //   },
-    //   messages: {
-    //     username: {
-    //       required: 'Enter username.',
-    //       minlength: 'Enter at least 5 characters'
-    //     }
-    //   },
-    //   errorElement: 'div',
-    //   errorPlacement: function (error, element) {
-    //     var placement = $(element).data('error');
-    //     if (placement) {
-    //       $(placement).append(error)
-    //     } else {
-    //       error.insertAfter(element);
-    //     }
-    //   }
-    // });
   }
 
   login() {
+    this.submitting = true;
     this.userService.userLogin(this.user).subscribe(
       resp => {
+        this.submitting = false;
         if (resp.status === 200) {
           localStorage.setItem('username', resp.body['auth']);
           localStorage.setItem('firstName', resp.body['firstName']);
@@ -57,12 +41,27 @@ export class LoginComponent implements OnInit {
         }
       },
       err => {
+        this.submitting = false;
         if (err.status === 404) {
-          alert('invalid username or password');
+          this.invalid = true;
         } else {
-
+          this.router.navigate(['login']);
         }
       }
     )
+  }
+
+  chkspace(evt) {
+    var charCode = (evt.which) ? evt.which : evt.keyCode
+    if (charCode == 32)
+      return false;
+    return true;
+  }
+
+  chkNum(evt) {
+    var charCode = (evt.which) ? evt.which : evt.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+      return false;
+    return true;
   }
 }

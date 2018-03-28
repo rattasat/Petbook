@@ -89,9 +89,11 @@ export class MypetComponent implements OnInit {
               if (err.error['message'] == 'not found pet') {
                 this.router.navigate(['/petlist']);
               } else {
+                localStorage.clear();
                 this.router.navigate(['/login']);
               }
             } else {
+              localStorage.clear();
               this.router.navigate(['/login']);
             }
           }

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,26 +16,33 @@ import { HomeModule } from './home/home.module';
 import { PublicPetModule } from './public-pet/public-pet.module';
 import { PetService } from './service/pet.service';
 import { UserService } from './service/user.service';
+import { LoginModule } from './login/login.module';
+import { RegisterModule } from './register/register.module';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    LoginModule,
     HomeModule,
+    RegisterModule,
     PublicPetModule,
     ErrorModule,
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [PetService, UserService],
-  bootstrap: [AppComponent]
+  providers: [
+    PetService,
+    UserService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

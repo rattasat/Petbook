@@ -17,6 +17,12 @@ export class UserService {
     });
   }
 
+  register(user) {
+    return this.http.post(this.apiUrl + '/user/create', user, {
+      observe: 'response'
+    });
+  }
+
   getUser() {
     return this.http.get(this.apiUrl + '/user', {
       headers: new HttpHeaders({
@@ -26,7 +32,4 @@ export class UserService {
       observe: 'response'
     });
   }
-
-
-
 }

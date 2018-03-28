@@ -21,12 +21,12 @@
     <div class="col s12 m4 l3" *ngFor="let pet of pets">
       <div class="card gradient-shadow gradient-45deg-light-blue-cyan border-radius-3">
         <div class="card-content center">
-          <a href="mypet/{{pet._id}}">
+          <a routerLink="/mypet/{{pet._id}}">
             <img src="{{pet.image ? pet.image : '../assets/image/default_pet.png'}}" class="responsive-img border-round z-depth-5">
             <h5 class="white-text lighten-4 margin">{{pet.name? pet.name : '-'}}</h5>
           </a>
         </div>
-        <a href="reports/{{pet._id}}" style="position:absolute; bottom: 1rem; right: 1rem;" class="btn-floating waves-effect waves-light purple darken-4">
+        <a routerLink="/reports/{{pet._id}}" style="position:absolute; bottom: 1rem; right: 1rem;" class="btn-floating waves-effect waves-light purple darken-4">
           <i class="material-icons">event_note</i>
         </a>
       </div>
@@ -35,7 +35,7 @@
   <div class="row" *ngIf="message == 'no pet'">
     <div class="col s12">
       <h5>No Pet Please
-        <a href="/addpet">Create</a>.
+        <a routerLink="/addpet">Create</a>.
       </h5>
     </div>
   </div>

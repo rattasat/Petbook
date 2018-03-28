@@ -31,6 +31,7 @@ export class ProfileComponent implements OnInit {
         },
         err => {
           this.loading = false;
+          localStorage.clear();
           this.router.navigate(['/login']);
         }
       )
