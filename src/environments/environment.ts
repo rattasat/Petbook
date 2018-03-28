@@ -6,5 +6,6 @@
 export const environment = {
   production: false,
   envName: 'dev',
-  apiUrl: 'http://localhost:8081'
+  apiUrl: 'http://localhost:8081',
+  lineFri: 'https://line.me/R/ti/p/%40pvb6787t'
 };

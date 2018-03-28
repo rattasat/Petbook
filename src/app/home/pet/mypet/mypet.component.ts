@@ -35,7 +35,8 @@ export class MypetComponent implements OnInit {
           this.loading = false;
           if (resp.status === 200) {
             this.pet = resp.body['pet'];
-            this.url = this.url + this.pet['_id'];
+            console.log(this.pet._id);
+            this.url = this.url + this.pet._id;
           }
         },
         err => {
