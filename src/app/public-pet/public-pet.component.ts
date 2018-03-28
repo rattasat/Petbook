@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { PetService } from '../service/pet.service';
 import { SwalComponent } from '@toverux/ngx-sweetalert2';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-public-pet',
@@ -10,6 +11,8 @@ import { SwalComponent } from '@toverux/ngx-sweetalert2';
   styleUrls: ['./public-pet.component.css']
 })
 export class PublicPetComponent implements OnInit {
+
+  lineFri = environment.lineFri;
   param: any;
   user = {
     firstName: String,
@@ -17,16 +20,6 @@ export class PublicPetComponent implements OnInit {
     tel: String,
     email: String
   };
-  // pet = {
-  //   type: String,
-  //   breed: String,
-  //   name: String,
-  //   gender: String,
-  //   ageYear: Number,
-  //   ageMonth: Number,
-  //   lostStatus: Boolean,
-  //   color: String
-  // };
   pet: any= {};
   position: any = {};
   loading = true;

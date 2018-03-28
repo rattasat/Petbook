@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UserService } from '../service/user.service';
+import { environment } from '../../environments/environment';
 declare var jquery: any;
 declare var $: any;
 
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
   user: any = {};
   submitting = false;
   invalid = false;
+  lineFri = environment.lineFri;
 
   constructor(
     private titleService: Title,
