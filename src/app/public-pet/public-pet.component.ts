@@ -61,30 +61,29 @@ export class PublicPetComponent implements OnInit {
 
   reportLocation() {
     if (navigator.geolocation) {
-      // this.reported = true;
+      this.reported = true;
       navigator.geolocation.getCurrentPosition((position) => {
         this.position.latitude = position.coords.latitude;
         this.position.longitude = position.coords.longitude;
-        // this.petService.reportLocationOnPublic(this.position, this.param.petid)
-        //   .subscribe(
-        //     resp => {
-        //       this.reported = false;
-        //       if (resp.status === 200) {
-        //         if (resp.body['message'] == 'ok') {
-        //           this.successSwal.show();
-        //         }
-        //       }
-        //     },
-        //     err => {
-        //       this.reported = false;
-        //       if (err.status === 500) {
-        //         this.errorSwal.show();
-        //       } else if (err.status === 404) {
-        //         alert('unknow pet');
-        //       }
-        //     }
-        //   )
-        console.log(this.position);
+        this.petService.reportLocationOnPublic(this.position, this.param.petid)
+          .subscribe(
+            resp => {
+              this.reported = false;
+              if (resp.status === 200) {
+                if (resp.body['message'] == 'ok') {
+                  this.successSwal.show();
+                }
+              }
+            },
+            err => {
+              this.reported = false;
+              if (err.status === 500) {
+                this.errorSwal.show();
+              } else if (err.status === 404) {
+                alert('unknow pet');
+              }
+            }
+          )
       });
     }
     else {
