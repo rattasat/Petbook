@@ -61,26 +61,27 @@ export class PublicPetComponent implements OnInit {
 
   reportLocation() {
     if (navigator.geolocation) {
-      this.reported = true;
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.reported = false;
+      // this.reported = true;
+      navigator.geolocation.getCurrentPosition(function (position) {
+        // this.reported = false;
         alert('PASS');
-      }, (error) => {
-        this.reported = false;
-        switch (error.code) {
-          case error.PERMISSION_DENIED:
-            alert("User denied the request for Geolocation.");
-            break;
-          case error.POSITION_UNAVAILABLE:
-            alert("Location information is unavailable.");
-            break;
-          case error.TIMEOUT:
-            alert("The request to get user location timed out.");
-            break;
-          // case error.UNKNOWN_ERROR:
-          //   alert("An unknown error occurred.");
+      }, function (error) {
+        // this.reported = false;
+        alert('time out')
+        // switch (error.code) {
+          // case error.PERMISSION_DENIED:
+          //   this.reported = false;
+          //   alert("User denied the request for Geolocation.");
           //   break;
-        }
+          // case error.POSITION_UNAVAILABLE:
+          //   this.reported = false;
+          //   alert("Location information is unavailable.");
+          //   break;
+          // case error.TIMEOUT:
+          //   this.reported = false;
+          //   alert("The request to get user location timed out.");
+          //   break;
+        // }
       }, {
           timeout: 10000
         });
