@@ -81,7 +81,9 @@ export class PublicPetComponent implements OnInit {
           //   alert("An unknown error occurred.");
           //   break;
         }
-      });
+      }, {
+          timeout: 10000
+        });
       // navigator.geolocation.getCurrentPosition((position) => {
       //   this.position.latitude = position.coords.latitude;
       //   this.position.longitude = position.coords.longitude;
