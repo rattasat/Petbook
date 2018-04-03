@@ -70,13 +70,17 @@ export class PublicPetComponent implements OnInit {
   }
   reportLocation() {
     if (navigator.geolocation) {
-      // this.reported = true;
+      this.reported = true;
       navigator.geolocation.getCurrentPosition((position) => {
+        this.reported = true;
         this.locationSuccess(position);
       }, (error) => {
+        this.reported = true;
         alert('location error');
       }, {
-          enableHighAccuracy: false
+          enableHighAccuracy: false,
+          maximumAge: Infinity,
+          timeout: 27000
         });
       // navigator.geolocation.getCurrentPosition((position) => {
       //   this.position.latitude = position.coords.latitude;
