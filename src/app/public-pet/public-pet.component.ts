@@ -59,10 +59,25 @@ export class PublicPetComponent implements OnInit {
       )
   }
 
+
+  locationSuccess(position) {
+    this.position.latitude = position.coords.latitude;
+    this.position.longitude = position.coords.longitude;
+    alert(this.position.latitude);
+  }
+  locationError() {
+
+  }
   reportLocation() {
     if (navigator.geolocation) {
-      alert('test');
       // this.reported = true;
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.locationSuccess(position);
+      }, (error) => {
+        alert('location error');
+      }, {
+          enableHighAccuracy: true
+        });
       // navigator.geolocation.getCurrentPosition((position) => {
       //   this.position.latitude = position.coords.latitude;
       //   this.position.longitude = position.coords.longitude;
