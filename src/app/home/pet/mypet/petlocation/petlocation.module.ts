@@ -16,9 +16,7 @@ import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
     FormsModule,
     CalendarModule,
     BrowserAnimationsModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDzl3h5W4Tgr0N7p8khp1XptW_htMKzbI8'
-    }),
+    AgmCoreModule,
     LoadingOpacityModule,
     SweetAlert2Module.forRoot()
   ],

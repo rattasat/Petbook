@@ -18,6 +18,7 @@ import { PetService } from './service/pet.service';
 import { UserService } from './service/user.service';
 import { LoginModule } from './login/login.module';
 import { RegisterModule } from './register/register.module';
+import { AgmCoreModule } from '@agm/core';
 
 
 
@@ -35,6 +36,9 @@ import { RegisterModule } from './register/register.module';
     PublicPetModule,
     ErrorModule,
     HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDzl3h5W4Tgr0N7p8khp1XptW_htMKzbI8'
+    }),
     RouterModule.forRoot(routes)
   ],
   providers: [
