@@ -76,7 +76,7 @@ export class PublicPetComponent implements OnInit {
       }, (error) => {
         alert('location error');
       }, {
-          enableHighAccuracy: true
+          enableHighAccuracy: false
         });
       // navigator.geolocation.getCurrentPosition((position) => {
       //   this.position.latitude = position.coords.latitude;
