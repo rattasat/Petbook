@@ -25,7 +25,7 @@ export class MypetComponent implements OnInit {
     private petService: PetService
   ) {
     this.route.params.subscribe(params => this.param = params);
-    this.url = location.host + '/pet/' + this.param.petid;
+    this.url = 'https://' + location.host + '/pet/' + this.param.petid;
   }
 
   ngOnInit() {

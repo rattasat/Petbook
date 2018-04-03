@@ -64,10 +64,29 @@ export class PublicPetComponent implements OnInit {
       this.reported = true;
       navigator.geolocation.getCurrentPosition((position) => {
         this.reported = false;
-        alert('PASS');
+        this.position.latitude = position.coords.latitude;
+        this.position.longitude = position.coords.longitude;
+        this.petService.reportLocationOnPublic(this.position, this.param.petid)
+          .subscribe(
+            resp => {
+              this.reported = false;
+              if (resp.status === 200) {
+                if (resp.body['message'] == 'ok') {
+                  this.successSwal.show();
+                }
+              }
+            },
+            err => {
+              this.reported = false;
+              if (err.status === 500) {
+                this.errorSwal.show();
+              } else if (err.status === 404) {
+                alert('unknow pet');
+              }
+            }
+          )
       }, (error) => {
         this.reported = false;
-        // alert('time out')
         switch (error.code) {
           case error.PERMISSION_DENIED:
             this.reported = false;
@@ -79,35 +98,12 @@ export class PublicPetComponent implements OnInit {
             break;
           case error.TIMEOUT:
             this.reported = false;
-            alert("The request to get user location timed out.");
+            alert("The request to get location timed out.");
             break;
         }
       }, {
           timeout: 10000
         });
-      // navigator.geolocation.getCurrentPosition((position) => {
-      //   this.position.latitude = position.coords.latitude;
-      //   this.position.longitude = position.coords.longitude;
-      //   this.petService.reportLocationOnPublic(this.position, this.param.petid)
-      //     .subscribe(
-      //       resp => {
-      //         this.reported = false;
-      //         if (resp.status === 200) {
-      //           if (resp.body['message'] == 'ok') {
-      //             this.successSwal.show();
-      //           }
-      //         }
-      //       },
-      //       err => {
-      //         this.reported = false;
-      //         if (err.status === 500) {
-      //           this.errorSwal.show();
-      //         } else if (err.status === 404) {
-      //           alert('unknow pet');
-      //         }
-      //       }
-      //     )
-      // });
     }
     else {
       alert("Geolocation is not supported by this browser.");
