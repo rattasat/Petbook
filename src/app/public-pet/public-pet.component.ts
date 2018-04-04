@@ -63,7 +63,6 @@ export class PublicPetComponent implements OnInit {
     if (navigator.geolocation) {
       this.reported = true;
       navigator.geolocation.getCurrentPosition((position) => {
-        this.reported = false;
         this.position.latitude = position.coords.latitude;
         this.position.longitude = position.coords.longitude;
         this.petService.reportLocationOnPublic(this.position, this.param.petid)
@@ -89,15 +88,12 @@ export class PublicPetComponent implements OnInit {
         this.reported = false;
         switch (error.code) {
           case error.PERMISSION_DENIED:
-            this.reported = false;
             alert("User denied the request for Geolocation.");
             break;
           case error.POSITION_UNAVAILABLE:
-            this.reported = false;
             alert("Location information is unavailable.");
             break;
           case error.TIMEOUT:
-            this.reported = false;
             alert("The request to get location timed out.");
             break;
         }
