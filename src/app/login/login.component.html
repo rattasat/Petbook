@@ -15,7 +15,7 @@
             <input [(ngModel)]="user.username" id="username" name="username" type="text" #username="ngModel" (keydown)="chkspace($event)"
               required />
             <label for="username" class="center-align">Username</label>
-            <div *ngIf="username.invalid && (username.dirty || loginForm.submitted)">
+            <div class="pre-error" *ngIf="username.invalid && (username.dirty || loginForm.submitted)">
               <div *ngIf="username.errors.required" class="error">
                 username is required.
               </div>
@@ -28,7 +28,7 @@
             <input [(ngModel)]="user.password" name="password" type="password" #password="ngModel" (keydown)="chkspace($event)" required
             />
             <label for="password">Password</label>
-            <div *ngIf="password.invalid && (password.dirty || loginForm.submitted)">
+            <div class="pre-error" *ngIf="password.invalid && (password.dirty || loginForm.submitted)">
               <div *ngIf="password.errors.required" class="error">
                 password is required.
               </div>

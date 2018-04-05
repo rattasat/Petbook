@@ -24,7 +24,7 @@
           <div class="input-field col s12 m12 l6">
             <input [(ngModel)]="pet.type" id="type" name="type" type="text" #type="ngModel" (keydown)="chkspace($event)" required />
             <label for="type">Type*</label>
-            <div *ngIf="type.invalid && (type.dirty || createForm.submitted)">
+            <div class="pre-error" *ngIf="type.invalid && (type.dirty || createForm.submitted)">
               <div *ngIf="type.errors.required" class="error">
                 please enter pet type.
               </div>
@@ -39,7 +39,7 @@
           <div class="input-field col s12 m12 l6">
             <input [(ngModel)]="pet.name" id="name" name="name" type="text" #name="ngModel" (keydown)="chkspace($event)" required />
             <label for="name">Name*</label>
-            <div *ngIf="name.invalid && (name.dirty || createForm.submitted)">
+            <div class="pre-error" *ngIf="name.invalid && (name.dirty || createForm.submitted)">
               <div *ngIf="name.errors.required" class="error">
                 please enter pet name.
               </div>
@@ -57,7 +57,7 @@
         <div class="row margin">
           <div class="col s12 m12 l6">
             <p class="labelSelect">Gender</p>
-            <p-dropdown [options]="petGender" [(ngModel)]="pet.gender" [style]="{'width':'100%'}" name="gender" [showClear]="true" placeholder="Gender"></p-dropdown>
+            <p-dropdown [options]="petGender" [(ngModel)]="pet.gender" [style]="{'width':'100%'}" name="gender"></p-dropdown>
           </div>
           <div class="input-field col s12 m16 l6">
             <input [(ngModel)]="pet.color" id="color" name="color" type="text" (keydown)="chkspace($event)" />

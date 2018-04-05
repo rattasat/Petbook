@@ -32,4 +32,14 @@ export class UserService {
       observe: 'response'
     });
   }
+
+  updateUser(user) {
+    return this.http.post(this.apiUrl + '/user/update', user, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('username')
+      }),
+      observe: 'response'
+    });
+  }
 }

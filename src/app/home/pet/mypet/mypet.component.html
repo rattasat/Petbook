@@ -54,9 +54,48 @@
         </button>
       </div>
       <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">
+        <span (click)="clearPet()" class="card-title grey-text text-darken-4">
           <i class="material-icons right">close</i>
         </span>
+        <form (ngSubmit)="updatePet()">
+          <div class="input-field col s12">
+            <input [(ngModel)]="udPet.type" placeholder="{{pet.type? pet.type : '-'}}" id="udtype" name="udtype" type="text" (keydown)="chkspace($event)"
+            />
+            <label class="active" for="udtype">Type</label>
+          </div>
+          <div class="input-field col s6 m6 l6">
+            <input [(ngModel)]="udPet.breed" placeholder="{{pet.breed? pet.breed : '-'}}" id="udbreed" name="udbreed" type="text" (keydown)="chkspace($event)"
+            />
+            <label class="active" for="udbreed">Breed</label>
+          </div>
+          <div class="input-field col s6 m6 l6">
+            <input [(ngModel)]="udPet.name" placeholder="{{pet.name? pet.name : '-'}}" id="udname" name="udname" type="text" (keydown)="chkspace($event)"
+            />
+            <label class="active" for="udname">Name</label>
+          </div>
+          <div class="input-field col s6 m6 l6">
+            <input [(ngModel)]="udPet.ageYear" placeholder="{{pet.ageYear? pet.ageYear : '-'}}" id="udageYear" name="udageYear" type="text"
+              (keydown)="chkNum($event)" maxlength="2" />
+            <label class="active" for="udageYear">Age years</label>
+          </div>
+          <div class="input-field col s6 m6 l6">
+            <input [(ngModel)]="udPet.ageMonth" placeholder="{{pet.ageMonth? pet.ageMonth : '-'}}" id="udageMonth" name="udageMonth"
+              (keydown)="chkNum($event)" maxlength="2" />
+            <label class="active" for="udageMonth">Age months</label>
+          </div>
+          <div class="col s6 m6 l6">
+            <p class="labelSelect">Gender</p>
+            <p-dropdown [options]="petGender" [(ngModel)]="udPet.gender" [style]="{'width':'100%'}" name="udgender"></p-dropdown>
+          </div>
+          <div class="input-field col s6 m6 l6">
+            <input [(ngModel)]="udPet.color" placeholder="{{pet.color? pet.color : '-'}}" id="udcolor" name="udcolor" type="text" (keydown)="chkspace($event)"
+            />
+            <label class="active" for="udcolor">Color</label>
+          </div>
+          <div class="input-field col s12">
+            <button type="submit" class="btn waves-effect waves-light col s12 cyan">Update</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -77,15 +116,13 @@
   (confirm)="updateStatus()">
 </swal>
 
-<!-- <swal #reportSwal title="Report {{pet.name}} Lost" text="please enter message" type="info" [showCancelButton]="true" confirmButtonText="Submit"
-  input="textarea" (confirm)="reportPet($event)">
-</swal> -->
-
 <swal #reportSwal title="Report {{pet.name}} Lost" text="please enter message" type="info" [showCancelButton]="true" confirmButtonText="Submit"
   input="textarea" (confirm)="reportPet($event)">
 </swal>
 
 <swal #warning text="please input message." type="warning"></swal>
+
+<swal #wrnUpdate text="pet data not change." type="warning"></swal>
 
 
 

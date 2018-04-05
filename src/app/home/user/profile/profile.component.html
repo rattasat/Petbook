@@ -42,13 +42,51 @@
           <i class="material-icons">message</i> Line Status: {{user.lineStatus}}</p>
       </div>
       <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">
+        <span (click)="clearUser()" class="card-title grey-text text-darken-4">
           <i class="material-icons right">close</i>
         </span>
+        <form #updateForm="ngForm" (ngSubmit)="updateForm.form.valid && updateUser()">
+          <div class="input-field col s12">
+            <input [(ngModel)]="udUser.firstName" placeholder="{{user.firstName? user.firstName : '-'}}" id="udfirstName" name="udfirstName"
+              type="text" (keydown)="chkspace($event)" maxlength="20" />
+            <label class="active" for="udfirstName">First Name</label>
+          </div>
+          <div class="input-field col s12">
+            <input [(ngModel)]="udUser.lastName" placeholder="{{user.lastName? user.lastName : '-'}}" id="udlastName" name="udlastName"
+              type="text" (keydown)="chkspace($event)" maxlength="20" />
+            <label class="active" for="udlastName">Last Name</label>
+          </div>
+          <div class="input-field col s12 m6 l6">
+            <input [(ngModel)]="udUser.tel" placeholder="{{user.tel? user.tel : '-'}}" id="udtel" name="udtel" type="text" (keydown)="chkNum($event)"
+              minlength="10" maxlength="10" #udTel="ngModel" />
+            <label class="active" for="udtel">Tel</label>
+            <div class="pre-error" *ngIf="udTel.invalid && (udTel.dirty || updateForm.submitted)">
+              <div *ngIf="udTel.errors.minlength" class="error">
+                Enter 10 characters.
+              </div>
+            </div>
+          </div>
+          <div class="input-field col s12 m6 l6">
+            <input [(ngModel)]="udUser.email" placeholder="{{user.email? user.email : '-'}}" id="udemail" name="udemail" type="text"
+              (keydown)="chkspace($event)" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #udEmail="ngModel" />
+            <label class="active" for="udemail">Email</label>
+            <div class="pre-error" *ngIf="udEmail.invalid && (udEmail.dirty || updateForm.submitted)">
+              <div *ngIf="udEmail.errors.pattern" class="error">
+                Email is invalid.
+              </div>
+            </div>
+          </div>
+          <div class="input-field col s12 ">
+            <button class="btn waves-effect waves-light col s12 cyan">Update</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
 <!--end container-->
+<swal #warning text="user data not change." type="warning"></swal>
 
 <app-loading-page *ngIf="loading"></app-loading-page>
+
+<app-loading-opacity *ngIf="updating"></app-loading-opacity>

@@ -4,6 +4,8 @@ import { Title } from '@angular/platform-browser';
 import { PetService } from '../service/pet.service';
 import { SwalComponent } from '@toverux/ngx-sweetalert2';
 import { environment } from '../../environments/environment';
+declare var jquery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-public-pet',
@@ -24,7 +26,6 @@ export class PublicPetComponent implements OnInit {
   position: any = {};
   loading = true;
   reported = false;
-  timer = 1500;
 
   @ViewChild('successSwal') private successSwal: SwalComponent;
   @ViewChild('errorSwal') private errorSwal: SwalComponent;
@@ -39,6 +40,7 @@ export class PublicPetComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('Petbook');
+    $('.materialboxed').materialbox();
     this.petService.getPetOnPublic(this.param.petid)
       .subscribe(
         resp => {

@@ -19,6 +19,9 @@ import { AddpetModule } from './pet/addpet/addpet.module';
 import { ReportListComponent } from './report/report-list/report-list.component';
 import { ReportListModule } from './report/report-list/report-list.module';
 import { RouterModule } from '@angular/router';
+import { ProfileModule } from './user/profile/profile.module';
+import { PetlistModule } from './pet/petlist/petlist.module';
+import { FooterModule } from '../footer/footer.module';
 
 @NgModule({
   imports: [
@@ -28,15 +31,16 @@ import { RouterModule } from '@angular/router';
     HomeRouting,
     MypetModule,
     AddpetModule,
-    LoadingPageModule,
     HeaderModule,
+    FooterModule,
     ReportListModule,
+    ProfileModule,
+    PetlistModule,
     RouterModule
   ],
-  declarations: [HomeComponent,
-    NavbarComponent,
-    PetlistComponent,
-    ProfileComponent
+  declarations: [
+    HomeComponent,
+    NavbarComponent
   ],
   exports: [
     HomeComponent,

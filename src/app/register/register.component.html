@@ -15,7 +15,7 @@
             <input [(ngModel)]="user.username" id="username" name="username" type="text" #username="ngModel" (keydown)="chkspace($event)"
               required minlength="8" maxlength="20" />
             <label for="username" class="center-align">Username</label>
-            <div *ngIf="username.invalid && (username.dirty || registerForm.submitted)">
+            <div class="pre-error" *ngIf="username.invalid && (username.dirty || registerForm.submitted)">
               <div *ngIf="username.errors.required" class="error">
                 username is required.
               </div>
@@ -31,7 +31,7 @@
             <input [(ngModel)]="user.firstName" id="firstName" name="firstName" type="text" #firstName="ngModel" (keydown)="chkspace($event)"
               required maxlength="20" />
             <label for="firstName" class="center-align">First Name</label>
-            <div *ngIf="firstName.invalid && (firstName.dirty || registerForm.submitted)">
+            <div class="pre-error" *ngIf="firstName.invalid && (firstName.dirty || registerForm.submitted)">
               <div *ngIf="firstName.errors.required" class="error">
                 first name is required.
               </div>
@@ -42,7 +42,7 @@
             <input [(ngModel)]="user.lastName" id="lastName" name="lastName" type="text" #lastName="ngModel" (keydown)="chkspace($event)"
               required maxlength="20" />
             <label for="lastName" class="center-align">Last Name</label>
-            <div *ngIf="lastName.invalid && (lastName.dirty || registerForm.submitted)">
+            <div class="pre-error" *ngIf="lastName.invalid && (lastName.dirty || registerForm.submitted)">
               <div *ngIf="lastName.errors.required" class="error">
                 last name is required.
               </div>
@@ -55,7 +55,7 @@
             <input [(ngModel)]="user.tel" id="tel" name="tel" type="text" #tel="ngModel" (keydown)="chkNum($event)" minlength="10" maxlength="10"
             />
             <label for="tel" class="center-align">Tel</label>
-            <div *ngIf="tel.invalid && (tel.dirty || registerForm.submitted)">
+            <div class="pre-error" *ngIf="tel.invalid && (tel.dirty || registerForm.submitted)">
               <div *ngIf="tel.errors.minlength" class="error">
                 Enter 10 characters.
               </div>
@@ -63,11 +63,12 @@
           </div>
           <div class="input-field col s12 m12 l6">
             <i class="material-icons prefix pt-5">email</i>
-            <input [(ngModel)]="user.email" id="email" name="email" type="text" #email="ngModel" (keydown)="chkspace($event)" email />
+            <input [(ngModel)]="user.email" id="email" name="email" type="text" #email="ngModel" (keydown)="chkspace($event)" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+            />
             <label for="email" class="center-align">Email</label>
-            <div *ngIf="email.invalid && (email.dirty || registerForm.submitted)">
-              <div *ngIf="email.errors.email" class="error">
-                wrong email format.
+            <div class="pre-error" *ngIf="email.invalid && (email.dirty || registerForm.submitted)">
+              <div *ngIf="email.errors.pattern" class="error">
+                  Email is invalid.
               </div>
             </div>
           </div>
@@ -78,7 +79,7 @@
             <input [(ngModel)]="user.password" id="password" name="password" type="password" #password="ngModel" (keydown)="chkspace($event)"
               required minlength="8" maxlength="20" />
             <label for="password" class="center-align">Password</label>
-            <div *ngIf="password.invalid && (password.dirty || registerForm.submitted)">
+            <div class="pre-error" *ngIf="password.invalid && (password.dirty || registerForm.submitted)">
               <div *ngIf="password.errors.required" class="error">
                 password is required.
               </div>
@@ -92,7 +93,7 @@
             <input [disabled]="password.invalid" [(ngModel)]="confirmPassword.password" id="confirmPassword" name="confirmPassword" type="password"
               #confirmPassword="ngModel" (keydown)="chkspace($event)" />
             <label for="confirmPassword " class="center-align ">Confirm Password</label>
-            <div *ngIf="((confirmPassword.value != password.value) && confirmPassword.value != null ) && password.valid" class="error ">
+            <div class="pre-error" *ngIf="((confirmPassword.value != password.value) && confirmPassword.value != null ) && password.valid" class="error ">
               not match password
             </div>
           </div>

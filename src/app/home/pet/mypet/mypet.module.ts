@@ -8,13 +8,17 @@ import { PetlocationModule } from './petlocation/petlocation.module';
 import { QRCodeModule } from 'angularx-qrcode';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import { LoadingOpacityModule } from '../../../loading/loading-opacity/loading-opacity.module';
+import { FormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     LoadingPageModule,
     LoadingOpacityModule,
     PetlocationModule,
+    DropdownModule,
     QRCodeModule,
     SweetAlert2Module.forRoot()
   ],
