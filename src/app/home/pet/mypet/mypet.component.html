@@ -29,6 +29,10 @@
             <div *ngIf="pet.lostStatus" class="ribbon" (click)="foundSwal.show()">
               <span>LOST</span>
             </div>
+            <button (click)="uploadClick()" style="position:absolute; right: 5px; bottom: 5px;" class="btn-floating waves-effect waves-light deep-purple lighten-2">
+              <i class="material-icons">file_upload</i>
+            </button>
+            <input id="imageFile" type="file" accept="image/*" class="hide" (change)="fileChange($event)">
           </div>
         </div>
         <div class="col s12 m4 l6 ">
@@ -129,3 +133,5 @@
 <app-loading-page *ngIf="loading"></app-loading-page>
 
 <app-loading-opacity *ngIf="deleting"></app-loading-opacity>
+
+<!-- <app-loading-opacity *ngIf="uploading"></app-loading-opacity> -->

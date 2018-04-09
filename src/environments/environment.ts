@@ -7,5 +7,12 @@ export const environment = {
   production: false,
   envName: 'dev',
   apiUrl: 'http://localhost:8081',
-  lineFri: 'https://line.me/R/ti/p/%40pvb6787t'
+  lineFri: 'https://line.me/R/ti/p/%40pvb6787t',
+  firebaseConfig: {
+    apiKey: "AIzaSyApE4zV6jeT-__mE4jV_gM3KUJIai0ulps",
+    authDomain: "petbookapi-1515952572035.firebaseapp.com",
+    databaseURL: "https://petbookapi-1515952572035.firebaseio.com",
+    storageBucket: "petbookapi-1515952572035.appspot.com",
+    messagingSenderId: "1083210610273",
+  }
 };

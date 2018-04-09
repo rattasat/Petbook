@@ -17,15 +17,21 @@ import { UserService } from './service/user.service';
 import { LoginModule } from './login/login.module';
 import { RegisterModule } from './register/register.module';
 import { AgmCoreModule } from '@agm/core';
+import { UploadService } from './service/upload.service';
+import { AngularFireModule } from 'angularfire2/';
+import * as firebase from 'firebase';
+import { environment } from '../environments/environment';
+import { Ng2ImgMaxModule } from 'ng2-img-max';
 
 
-
+firebase.initializeApp(environment.firebaseConfig);
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
     BrowserModule,
+    Ng2ImgMaxModule,
     FormsModule,
     HttpModule,
     LoginModule,
@@ -37,11 +43,13 @@ import { AgmCoreModule } from '@agm/core';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDzl3h5W4Tgr0N7p8khp1XptW_htMKzbI8'
     }),
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
   providers: [
     PetService,
-    UserService
+    UserService,
+    UploadService
   ],
   bootstrap: [
     AppComponent
