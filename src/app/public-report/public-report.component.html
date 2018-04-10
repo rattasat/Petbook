@@ -1,0 +1,44 @@
+<div class="page cyan">
+  <div *ngIf="message == 'ok'" id="petPage" class="row" style="display: table-cell; vertical-align: middle;" >
+    <div class="col s12 m12 l6 offset-l3" *ngFor="let report of reports">
+      <div class="card" style="padding: 1rem; display: flow-root; position: relative;">
+        <div class="card-content margin no-padding">
+          <div class="col s12 m6 l6" style="margin-bottom: 1rem">
+            <div class="blue" style="position: relative;">
+              <img src='{{report.pet.image? report.pet.image : "../../assets/image/default_pet.png"}}' alt="pet" class="materialboxed responsive-img"
+                style="display: block; margin: 0 auto;">
+              <div class="ribbon" *ngIf="report.pet.lostStatus == true">
+                <span>LOST</span>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m6 l6">
+            <p class="pet-content">Type : {{report.pet.type}}</p>
+            <p class="pet-content">Breed : {{report.pet.breed ? report.pet.breed : '-'}}</p>
+            <p class="pet-content">Name : {{report.pet.name}}</p>
+            <p class="pet-content">Gender : {{report.pet.gender ? report.pet.gender : '-'}}</p>
+            <p class="pet-content">Age : {{report.pet.ageYear ? report.pet.ageMonth ? report.pet.ageYear + ' years ' + report.pet.ageMonth + ' months' : report.pet.ageYear + ' years'
+              : report.pet.ageMonth ? report.pet.ageMonth + ' months' : '-'}}</p>
+            <p class="pet-content">Color : {{report.pet.color ? report.pet.color : '-'}}</p>
+            <div class="divider"></div>
+            <p class="pet-content" style="margin-top: 10px;">Owner : {{report.user.firstName}} {{report.user.lastName}}</p>
+            <p class="pet-content">Tel : {{report.user.tel ? report.user.tel : '-'}}</p>
+            <p class="pet-content">Email : {{report.user.email ? report.user.email : '-'}}</p>
+          </div>
+          <button style="position:absolute; top: 0; right: 0;" class="btn-floating activator waves-effect waves-light blue darken-4">
+            <i class="material-icons">textsms</i>
+          </button>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">
+            <i class="material-icons right">close</i>
+          </span>
+          <textarea>{{report.text}}</textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h1 *ngIf="message != 'ok'">NO REPORT</h1>
+</div>
+
+<app-loading-page *ngIf="loading"></app-loading-page>

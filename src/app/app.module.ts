@@ -22,12 +22,13 @@ import { AngularFireModule } from 'angularfire2/';
 import * as firebase from 'firebase';
 import { environment } from '../environments/environment';
 import { Ng2ImgMaxModule } from 'ng2-img-max';
+import { PublicReportModule } from './public-report/public-report.module';
 
 
 firebase.initializeApp(environment.firebaseConfig);
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +39,7 @@ firebase.initializeApp(environment.firebaseConfig);
     HomeModule,
     RegisterModule,
     PublicPetModule,
+    PublicReportModule,
     ErrorModule,
     HttpClientModule,
     AgmCoreModule.forRoot({

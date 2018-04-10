@@ -106,4 +106,8 @@ export class PetService {
     });
   }
 
+  getReportDaily() {
+    return this.http.get(this.apiUrl + '/pub/report/daily');
+  }
+
 }
