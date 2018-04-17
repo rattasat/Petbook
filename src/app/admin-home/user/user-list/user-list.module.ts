@@ -12,7 +12,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     Ng2SmartTableModule,
     LoadingPageModule,
-    LoadingOpacityModule,
     ReactiveFormsModule
   ],
   declarations: [

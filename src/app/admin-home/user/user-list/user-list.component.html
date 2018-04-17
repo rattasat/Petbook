@@ -19,8 +19,7 @@
 <!--breadcrumbs end-->
 
 <div class="container">
-  <ng2-smart-table [settings]="settings" [source]="users" (deleteConfirm)="deleteRecord($event)"></ng2-smart-table>
+  <ng2-smart-table [settings]="settings" [source]="users"></ng2-smart-table>
 </div>
 
 <app-loading-page *ngIf="loading"></app-loading-page>
-<app-loading-opacity *ngIf="ban"></app-loading-opacity>

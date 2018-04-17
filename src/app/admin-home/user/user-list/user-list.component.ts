@@ -19,7 +19,6 @@ export class UserListComponent implements OnInit {
 
   // users: any = [];
   loading = true;
-  ban = false;
 
   constructor(
     private router: Router,

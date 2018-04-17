@@ -14,8 +14,6 @@ declare var swal: any;
 })
 export class BtnDelComponent implements ViewCell, OnInit {
 
-  ban = false;
-
   constructor(
     private router: Router,
     private adminService: AdminService
@@ -40,13 +38,11 @@ export class BtnDelComponent implements ViewCell, OnInit {
     }, this.rowData.username)
       .subscribe(
         resp => {
-          this.ban = false;
           if (resp.status === 200) {
             location.reload();
           }
         },
         err => {
-          this.ban = false;
           if (err.status === 500) {
             location.reload();
           }
@@ -63,7 +59,6 @@ export class BtnDelComponent implements ViewCell, OnInit {
       title: 'Block ' + this.rowData.username + '?',
       showCancelButton: true,
       preConfirm: () => {
-        this.ban = true;
         this.banUser();
       }
     })
