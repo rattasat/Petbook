@@ -1,0 +1,26 @@
+<!--breadcrumbs start-->
+<div id="breadcrumbs-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <h5 class="breadcrumbs-title">Users</h5>
+        <ol class="breadcrumbs">
+          <li class="active">
+            Users
+          </li>
+          <li class="active">
+            list
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<!--breadcrumbs end-->
+
+<div class="container">
+  <ng2-smart-table [settings]="settings" [source]="users" (deleteConfirm)="deleteRecord($event)"></ng2-smart-table>
+</div>
+
+<app-loading-page *ngIf="loading"></app-loading-page>
+<app-loading-opacity *ngIf="ban"></app-loading-opacity>

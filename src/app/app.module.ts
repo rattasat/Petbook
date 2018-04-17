@@ -23,7 +23,10 @@ import * as firebase from 'firebase';
 import { environment } from '../environments/environment';
 import { Ng2ImgMaxModule } from 'ng2-img-max';
 import { PublicReportModule } from './public-report/public-report.module';
-
+import { AdminHomeModule } from './admin-home/admin-home.module';
+import { AdminLoginModule } from './admin-login/admin-login.module';
+import { AdminService } from './service/admin.service';
+import { DatePipe } from '@angular/common';
 
 firebase.initializeApp(environment.firebaseConfig);
 @NgModule({
@@ -36,7 +39,9 @@ firebase.initializeApp(environment.firebaseConfig);
     FormsModule,
     HttpModule,
     LoginModule,
+    AdminLoginModule,
     HomeModule,
+    AdminHomeModule,
     RegisterModule,
     PublicPetModule,
     PublicReportModule,
@@ -51,7 +56,9 @@ firebase.initializeApp(environment.firebaseConfig);
   providers: [
     PetService,
     UserService,
-    UploadService
+    UploadService,
+    AdminService,
+    DatePipe
   ],
   bootstrap: [
     AppComponent

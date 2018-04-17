@@ -8,10 +8,15 @@ import { PublicPetComponent } from './public-pet/public-pet.component';
 import { ErrorModule } from './error/error.module';
 import { ErrorComponent } from './error/error.component';
 import { PublicReportComponent } from './public-report/public-report.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'admin/login',
+    component: AdminLoginComponent
   },
   {
     path: 'register',
@@ -33,6 +38,10 @@ export const routes: Routes = [
   {
     path: '',
     loadChildren: './home/home.module#HomeModule'
+  },
+  {
+    path: 'admin',
+    loadChildren: './admin-home/admin-home.module#AdminHomeModule'
   },
   {
     path: 'error',

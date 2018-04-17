@@ -1,51 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { UserService } from '../service/user.service';
-import { environment } from '../../environments/environment';
-declare var jquery: any;
-declare var $: any;
+import { AdminService } from '../service/admin.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-admin-login',
+  templateUrl: './admin-login.component.html',
+  styleUrls: ['./admin-login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class AdminLoginComponent implements OnInit {
 
   user: any = {};
   submitting = false;
   invalid = false;
-  banned = false;
-  lineFri = environment.lineFri;
 
   constructor(
     private titleService: Title,
-    private userService: UserService,
-    private router: Router
+    private router: Router,
+    private adminService: AdminService
   ) { }
 
   ngOnInit() {
-    if (localStorage.getItem('username')) {
-      this.router.navigate(['/petlist']);
+    if (localStorage.getItem('usertoken')) {
+      this.router.navigate(['/admin/userlist']);
     }
-    this.titleService.setTitle('Petbook | Login')
+    this.titleService.setTitle('Petbook Admin | Login')
   }
 
   login() {
     this.submitting = true;
-    this.userService.userLogin(this.user).subscribe(
+    this.adminService.adminLogin(this.user).subscribe(
       resp => {
         this.submitting = false;
         if (resp.status === 200) {
-          if (resp.body['message'] == 'ok') {
-            localStorage.setItem('username', resp.body['auth']);
-            localStorage.setItem('firstName', resp.body['firstName']);
-            this.router.navigate(['/petlist']);
-          }
-          if (resp.body['message'] == 'user banned') {
-            this.banned = true;
-          }
+          localStorage.setItem('usertoken', resp.body['auth']);
+          localStorage.setItem('firstName', resp.body['username']);
+          this.router.navigate(['/admin/userlist']);
         }
       },
       err => {
@@ -72,4 +62,5 @@ export class LoginComponent implements OnInit {
       return false;
     return true;
   }
+
 }
