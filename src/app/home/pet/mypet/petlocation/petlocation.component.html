@@ -4,7 +4,7 @@
 
 <div *ngIf="message == 'ok'" class="card" style="padding-bottom: 1rem;">
   <div class="col s12 m12 l12 no-padding">
-    <agm-map [latitude]="markers[0].latitude" [longitude]="markers[0].longitude" [scrollwheel]="true" [fitBounds]="latlngBounds"
+    <agm-map [scrollwheel]="true" [fitBounds]="latlngBounds"
       [zoomControl]="false">
       <agm-marker *ngFor="let m of markers" [latitude]="m.latitude" [longitude]="m.longitude"></agm-marker>
     </agm-map>
